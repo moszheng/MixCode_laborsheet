@@ -7,10 +7,9 @@ class UploadModelForm(forms.ModelForm):
         model = Post
         fields = '__all__'
 
-        widget = {
+        widgets = {
 
-            'labor_name' : forms.TextInput(attrs={'class': 'form-control', 'placeholder':'test'}),
+            'labor_name' : forms.TextInput(attrs={'class': 'form-control', 'placeholder':'姓名'}),
             
-            #'labor_ID' : forms.TextInput(attrs={'class': 'form-control',}),
-            #'ID_front' : forms.FileInput(attrs={'class':'form-control', 'type':'file', 'id':'formFile' })
+            'ID_front' : forms.FileInput(attrs={'class':'form-control', 'type':'file', 'id':'formFile' })
         }

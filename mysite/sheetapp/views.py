@@ -16,7 +16,6 @@ def get_name(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()            
-            print('123')
             return HttpResponseRedirect('/thanks/')   
     
     else:

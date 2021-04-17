@@ -2,8 +2,23 @@
 
 {% block upload %}
 
-<div>
-    感謝你的幫助
+<div class="py-5 text-center ">
+
+    {% load static %}
+
+	<div class="mb-5">
+		<img src="{% static 'logo/mixcode_logo_L.png' %}" width="148" height="78">
+	</div>
+    <div class="mb-5">
+        
+        <b> {{labor_name}} 感謝您的幫助</b>
+        
+    </div>
+    <footer class="text-small">
+        <p class="mb-1">Taipei / Taiwan</p>
+		<p class="mb-1">mixcode.tv</p>
+		<p>T 02-27671502  | E info@mixcode.tv</p>
+    </footer>
 </div>
 
 {% endblock  %}

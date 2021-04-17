@@ -5,25 +5,40 @@
 <form action="" enctype="multipart/form-data" method="post">
 
 	{% csrf_token %}
+	{% load static %}
+	
+	<div class="py-4">
+		<div class="row">
+			
 
-	<h1 class="header" > Mixcode 混合編碼勞報單 </h1>
+			<div class="col-sm-4">
+				<img src="{% static 'logo/mixcode_logo_L.png' %}" width="148" height="78">
+			</div>
+			<div class="col-sm-8">
+				<h1 class="header" > 混合編碼勞報單 </h1>
+				
+			</div>
+		</div>
+	</div>
 
 	<div class="form-group">
 		
-		<div class="mb-3">
+		<div class="">
 			
-			<h4 class="mb-3">領款人基本資料</h4>
+			<h4 class="mt-4 mb-3">領款人基本資料</h4>
 			
-			<div>
+			<div class="">
 
 				<label>姓名</label>
 				{{ form.labor_name}}
 				
 			</div>
 
-			<div class="col">
+			<div class="">
+
 				<label>身份證字號</label>
 				{{ form.labor_ID }}
+
 			</div>
 
 			<label>連絡電話</label>
@@ -41,13 +56,16 @@
 			{{ form.labor_bankaccount}}<br>
 		</div>
 
-		
+		<hr class="my-4">
+
 		<div class="mb-3">
 			<label>專案名稱</label>
-			{{ form.project_name}}<br>
+			{{ form.project_name}}
 		</div>
-		
-		<div class="mb-3">
+
+		<hr class="my-4">
+
+		<div class="my-3">
 
 			<h4 class="mb-3">領款金額</h4>
 
@@ -60,6 +78,8 @@
 
 		</div>
 
+		<hr class="my-4">
+		
 		<div class="mb-3">
 
 			<div class="mb-3">
