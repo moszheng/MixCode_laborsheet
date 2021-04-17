@@ -9,14 +9,14 @@ def get_name(request):
 
     if request.method == 'POST':
         
-        form = UploadModelForm(request.POST)
+        form = UploadModelForm(request.POST, request.FILES)
         
         if form.is_valid():
 
             post = form.save(commit=False)
             post.author = request.user
             post.save()            
-            
+            print('123')
             return HttpResponseRedirect('/thanks/')   
     
     else:

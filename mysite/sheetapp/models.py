@@ -15,10 +15,10 @@ class Post(models.Model):
 
     price = models.IntegerField()
     
-    created_at = models.DateTimeField(auto_now_add=True)
-
     ID_front = models.ImageField(upload_to='image/', blank=False, null=False)
     ID_back = models.ImageField(upload_to='image/', blank=False, null=False)
+
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.labor_name
