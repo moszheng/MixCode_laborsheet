@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block upload %}
+<div class="form-group">	
+<form action="" enctype="multipart/form-data" method="post">
+
+	{% csrf_token %}
+
+	<h1 class="header" > Mixcode 混合編碼勞報單 </h1>
+
+	<div class="form-group">
+		
+		<div class="mb-3">
+			
+			<h4 class="mb-3">領款人基本資料</h4>
+			
+			<div>
+			
+				<label>姓名</label>
+				{{ form.labor_name}}
+				
+			</div>
+
+			<div class="col">
+				<label>身份證字號</label>
+				{{ form.labor_ID }}
+			</div>
+
+			<label>連絡電話</label>
+			{{ form.labor_Phone}}<br>
+
+			<label>戶籍地址</label>
+			{{ form.labor_location}}<br>
+			<label>通訊地址</label>
+			
+			<label>銀行名(含分行)</label>
+			{{ form.labor_bank}}<br>
+			<label>銀行戶名</label>
+			{{ form.labor_bankname}}<br>
+			<label>銀行帳號</label>
+			{{ form.labor_bankaccount}}<br>
+		</div>
+
+		
+		<div class="mb-3">
+			<label>專案名稱</label>
+			{{ form.project_name}}<br>
+		</div>
+		
+		<div class="mb-3">
+
+			領款金額<br>
+
+			<label>給付總額</label>
+			{{ form.price }}<br>
+
+			<li>代扣所得稅(10%)</li>
+			<li>代扣補充保費(1.91%)</li>
+			<li>給付淨額</li>
+
+		</div>
+
+		<div>
+
+			<div class="mb-3">
+				<label for="formFile" class="form-label">身分證正面</label>
+				{{ form.ID_front}}
+			</div>
+			<div class="mb-3">
+				<label>身分證反面</label>
+				{{ form.ID_back}}
+			</div>
+
+		</div>
+
+		<input type="submit" class="btn btn-primary" value="寄出">
+	</div>		
+</form>
+</div>
+
+{% endblock  %}
+
+{% block content %}
+
+{% endblock  %}
