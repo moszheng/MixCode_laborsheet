@@ -7,22 +7,20 @@
     {% load static %}
 
 	<div class="mb-5">
-		<img src="{% static 'logo/mixcode_logo_L.png' %}" width="148" height="78">
+		<img src="{% static 'logo/mixcode_logo.png' %}" width="150" height="150">
 	</div>
     <div class="mb-5">
         
         <b> {{labor_name}} 感謝您的幫助</b>
         
     </div>
-    <footer class="text-small">
-        <p class="mb-1">Taipei / Taiwan</p>
-		<p class="mb-1">mixcode.tv</p>
-		<p>T 02-27671502  | E info@mixcode.tv</p>
-    </footer>
 </div>
 
 {% endblock  %}
-
-{% block content %}
-
+{% block footer %}
+        <footer class="text-small mt-auto">
+            <p class="mb-1">Taipei / Taiwan</p>
+            <p class="mb-1">mixcode.tv</p>
+            <p>T 02-27671502  | E info@mixcode.tv</p>
+        </footer>
 {% endblock  %}

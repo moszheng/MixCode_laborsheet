@@ -8,14 +8,14 @@
 	{% load static %}
 	
 	<div class="py-4">
-		<div class="row">
-			
+		<div class="row align-items-center">
 
-			<div class="col-sm-4">
-				<img src="{% static 'logo/mixcode_logo_L.png' %}" width="148" height="78">
+			<div class="col-sm-3">
+				<img src="{% static 'logo/mixcode_logo.png' %}" width="100" height="100">
+				
 			</div>
-			<div class="col-sm-8">
-				<h1 class="header" > 混合編碼勞報單 </h1>
+			<div class="col-sm-9 py-1">
+				<h2 class="header" > 混合編碼勞報單 </h1>
 				
 			</div>
 		</div>
@@ -27,14 +27,13 @@
 			
 			<h4 class="mt-4 mb-3">領款人基本資料</h4>
 			
-			<div class="">
+			<div class="form-group">
 
 				<label>姓名</label>
 				{{ form.labor_name}}
 				
 			</div>
-
-			<div class="">
+			<div class="form-group">
 
 				<label>身份證字號</label>
 				{{ form.labor_ID }}
@@ -44,9 +43,21 @@
 			<label>連絡電話</label>
 			{{ form.labor_Phone}}<br>
 
-			<label>戶籍地址</label>
-			{{ form.labor_location}}<br>
-			<label>通訊地址</label>
+			<div class="form-group">
+
+				<label>戶籍地址</label>
+				{{ form.labor_ResidentAddress}}
+				<label>通訊地址</label>
+				{{ form.labor_CurrentAddress}}
+
+			</div>
+
+			<div class="mb-4">
+				<input type="checkbox" id="address_check" class="form-check-input">
+				<label class="form-check-label" for="flexCheckDefault">
+					通訊地址同戶籍地址
+				</label>
+			</div>
 			
 			<label>銀行名(含分行)</label>
 			{{ form.labor_bank}}<br>
@@ -72,34 +83,119 @@
 			<label>給付總額</label>
 			{{ form.price }}<br>
 
-			<li>代扣所得稅(10%)</li>
-			<li>代扣補充保費(1.91%)</li>
-			<li>給付淨額</li>
-
+			<div class="row align-items-center">
+				<div class="col">
+					<li>代扣所得稅(10%)</li>
+				</div>
+				<div class="col">
+					<p id='incometax'>0</p>
+				</div>
+			</div>
+			<div class="row align-items-center">
+				<div class="col">
+					
+					<li>代扣補充保費(1.91%)</li>
+					
+				</div>
+				<div class="col">
+					
+					<p id='premium'>0</p>
+					
+				</div>
+			</div>
+			<div class="row align-items-center">
+				<div class="col">
+					
+					<li>給付淨額</li>
+				</div>
+				<div class="col">
+					
+					<p id='netamount'>0</p>
+				</div>
+			</div>
 		</div>
 
 		<hr class="my-4">
 		
-		<div class="mb-3">
+		<div class="row mb-4">
 
-			<div class="mb-3">
+			<div class="col">
 				<label for="formFile" class="form-label">身分證正面</label>
 				{{ form.ID_front}}
 			</div>
-			<div class="mb-3">
+			<div class="col">
 				<label>身分證反面</label>
 				{{ form.ID_back}}
 			</div>
 
 		</div>
 
-		<input type="submit" class="btn btn-primary" value="寄出">
+		<div class="mb-4">
+			<input type="checkbox" id="form_check" class="">
+			<label>確認以上資料無誤</label>
+		</div>
+		
+		<input type="submit" class="w-100 btn btn-dark fw-bold py-2 mb-4" value="送出">
 	</div>		
 </form>
 </div>
 
 {% endblock  %}
 
-{% block content %}
+{% block footer %}
 
+        <footer class="container py-5">
+
+            <p class="mb-1 text-center">2015 © Mixcode Studio.</p>
+            
+        </footer>
+
+{% endblock  %}
+
+{% block js%}
+<script type="text/javascript ">
+      
+        
+        const ResidentAddress = document.getElementById("ResidentAddress");
+        const CurrentAddress = document.getElementById("CurrentAddress");
+        var address_check = document.getElementById("address_check"); 
+
+        
+
+        address_check.addEventListener("change", function () {
+
+          if(this.checked){
+            CurrentAddress.setAttribute("value",ResidentAddress.value);
+          }
+
+        });
+
+        const price =  document.getElementById("price");
+        const form = document.querySelector("#form");
+
+        price.addEventListener("input", function (e) {
+
+          
+          if ( price.value > 20000){
+            incometex_num  = Math.round(price.value *0.1);
+            premium_num = Math.round(price.value *0.0191);
+          }
+          else{
+            incometex_num  = 0;
+            premium_num = 0;
+          }
+
+          const netamount_num = price.value - incometex_num - premium_num;
+
+          document.getElementById("incometax").innerHTML = incometex_num; 
+          document.getElementById("premium").innerHTML = premium_num; 
+          document.getElementById("netamount").innerHTML = netamount_num ; 
+
+        });
+
+        form.addEventListener("submit", function (e) { 
+            e.preventDefault();
+        });
+
+    </script>
 {% endblock  %}

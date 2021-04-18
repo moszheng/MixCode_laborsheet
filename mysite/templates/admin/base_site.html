@@ -1,0 +1,17 @@
+{% extends 'admin/base.html'%}
+{%load static%}
+
+{% block branding%}
+
+<h1 id="head">
+    <img src="{% static 'logo/mixcode_logo.png' %}" width="75" height="75">
+    <p>Mixcode</p>
+</h1>
+
+{% endblock %}
+
+{% block extrastyle%}
+
+<link rel="stylesheet" href="{% static 'css/adminstyle.css'%}">
+
+{% endblock %}

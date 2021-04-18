@@ -6,7 +6,8 @@ class Post(models.Model):
     labor_ID = models.CharField(max_length=20, blank=False, null=False)
     labor_Phone = models.CharField(max_length=20, blank=False, null=False)
     
-    labor_location = models.CharField(max_length=60, blank=False, null=False)
+    labor_ResidentAddress = models.CharField(max_length=60, blank=False, null=False)
+    labor_CurrentAddress = models.CharField(max_length=60, blank=False, null=False)
     labor_bank = models.CharField(max_length=20, blank=False, null=False)
     labor_bankname = models.CharField(max_length=20, blank=False, null=False)
     labor_bankaccount = models.CharField(max_length=20, blank=False, null=False)
