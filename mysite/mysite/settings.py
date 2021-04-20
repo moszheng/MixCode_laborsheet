@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,11 +28,10 @@ SECRET_KEY = 'django-insecure-n#pjt_mkclka+c9nte5(@m^p2=c7&pb92tc3*_58gx&ya)6jjh
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'mixcode-laborsheet.herokuapp.com/'
+    
 ]
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
+
 
 # Application definition
 
@@ -48,7 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+#    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

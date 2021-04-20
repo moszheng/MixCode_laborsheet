@@ -13,7 +13,7 @@ class PostAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ['領款人資料',{
-            'fields':('labor_name','labor_ID','labor_Phone','labor_location',
+            'fields':('labor_name','labor_ID','labor_Phone','labor_ResidentAddress','labor_CurrentAddress',
                         ('labor_bank','labor_bankname','labor_bankaccount',)),
         }],
         ['專案名稱',{    
