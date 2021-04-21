@@ -20,7 +20,7 @@ class PostAdmin(admin.ModelAdmin):
             'fields': ('project_name','price',),
         }],
         ['身分證',{    
-            'fields': ('ID_front','ID_back',),
+            'fields': ('ID_front','ID_back','bank_cover',),
         }]
     )
    

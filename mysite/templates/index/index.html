@@ -73,13 +73,15 @@
 			<label>銀行帳號</label>
 			{{ form.labor_bankaccount}}<br>
 		</div>
-
+		
 		<div>
 			申報類別
+			{{ form.category_choice}}
 		</div>
 
 		<div>
 			職業工業會員
+			{{ form.member_choice}}
 		</div>
 
 		<hr class="my-4">
@@ -144,17 +146,27 @@
 			</div>
 			<div class="col">
 				<label for="formFile" class="form-label">銀行存摺封面</label>
-				{{ form.ID_back}}
+				{{ form.bank_cover}}
 			</div>
 
 		</div>
+		
+		<div class="my-4">
+			<h4>簽名處</h4>
+		</div>
 
-		簽名
+		<div class="wrapper my-4">
+			<canvas id="signature-pad" class="signature-pad" width=500 height=200></canvas>
+		</div>
+		<div>
+			<button class="btn btn-dark py-2 mb-4" id="save">Save</button>
+			<button class="btn btn-dark py-2 mb-4" id="clear">Clear</button>
+		</div>
 
 		<div class="mb-4">
 			<input type="checkbox" id="form_check" class="">
 			<label>確認以上資料無誤</label>
-		</div>
+		</div>-->
 		
 		<input type="submit" class="w-100 btn btn-dark fw-bold py-2 mb-4" value="送出">
 	</div>		
@@ -213,10 +225,42 @@
           document.getElementById("netamount").innerHTML = netamount_num ; 
 
         });
-
-        form.addEventListener("submit", function (e) { 
+		
+		/*form.addEventListener("submit", function (e) { 
             e.preventDefault();
-        });
+        });*/
+
+		//---------簽名---------
+
+		var canvas = document.querySelector("canvas");
+
+        var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
+  			backgroundColor: 'rgba(255, 255, 255)',
+  			penColor: 'rgb(0, 0, 0)',
+			minDistance: 1
+		});
+
+		var saveButton = document.getElementById('save');
+		var cancelButton = document.getElementById('clear');
+
+		saveButton.addEventListener('click', function (event) {
+			
+			if (signaturePad.isEmpty()) {
+    			return alert("Please provide a signature first.");
+  			}
+
+  			var data = signaturePad.toDataURL('image/png');
+
+			// Send data to server instead...
+			console.log(data);
+  			window.open(data);
+		});
+
+		cancelButton.addEventListener('click', function (event) {
+  			signaturePad.clear();
+		});
+
+		
 
     </script>
 {% endblock  %}
