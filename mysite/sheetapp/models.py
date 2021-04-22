@@ -11,28 +11,28 @@ memberchoice = [
 
 class Post(models.Model):
 
-    labor_name = models.CharField(max_length=20, blank=False, null=False)
-    labor_ID = models.CharField(max_length=20, blank=False, null=False)
-    labor_email = models.CharField(max_length=20, blank=False, null=False)
-    labor_Phone = models.CharField(max_length=20, blank=False, null=False)
+    labor_name = models.CharField(max_length=20, verbose_name='領款人姓名',blank=False, null=False)
+    labor_ID = models.CharField(max_length=20, verbose_name='身分證字號', blank=False, null=False)
+    labor_email = models.EmailField(max_length=60, verbose_name='電子信箱', blank=False, null=False)
+    labor_Phone = models.CharField(max_length=20, verbose_name='連絡電話', blank=False, null=False)
 
-    category_choice = models.CharField(max_length=3, choices=categorychoice)
-    member_choice = models.CharField(max_length=3, choices=memberchoice)
+    category_choice = models.CharField(max_length=3, verbose_name='申報類別', choices=categorychoice)
+    member_choice = models.CharField(max_length=3, verbose_name='職業工業會員', choices=memberchoice)
     
-    labor_ResidentAddress = models.CharField(max_length=60, blank=False, null=False)
-    labor_CurrentAddress = models.CharField(max_length=60, blank=False, null=False)
-    labor_bank = models.CharField(max_length=20, blank=False, null=False)
-    labor_bankname = models.CharField(max_length=20, blank=False, null=False)
-    labor_bankaccount = models.CharField(max_length=20, blank=False, null=False)
+    labor_ResidentAddress = models.CharField(max_length=60, verbose_name='戶籍地址', blank=False, null=False)
+    labor_CurrentAddress = models.CharField(max_length=60, verbose_name='通訊地址', blank=False, null=False)
+    labor_bank = models.CharField(max_length=20, verbose_name='銀行名(含分行)', blank=False, null=False)
+    labor_bankname = models.CharField(max_length=20, verbose_name='銀行戶名', blank=False, null=False)
+    labor_bankaccount = models.CharField(max_length=20, verbose_name='銀行帳號', blank=False, null=False)
 
-    project_name = models.CharField(max_length=20, blank=False, null=False)
+    project_name = models.CharField(max_length=20, verbose_name='專案名稱', blank=False, null=False)
 
-    price = models.IntegerField()
+    price = models.IntegerField(verbose_name='專案金額')
     
-    ID_front = models.ImageField(upload_to='image/', blank=False, null=False)
-    ID_back = models.ImageField(upload_to='image/', blank=False, null=False)
-    bank_cover = models.ImageField(upload_to='image/', blank=False, null=False)
-    labor_signature = models.ImageField(upload_to='image/', blank=False, null=False)
+    ID_front = models.ImageField(upload_to='image/', verbose_name='身份證正面', blank=False, null=False)
+    ID_back = models.ImageField(upload_to='image/', verbose_name='身份證正面', blank=False, null=False)
+    bank_cover = models.ImageField(upload_to='image/', verbose_name='銀行存摺封面', blank=False, null=False)
+    
 
     created_at = models.DateTimeField(auto_now_add=True)
 

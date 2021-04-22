@@ -43,7 +43,7 @@
 			<div class="form-group">
 
 				<label>電子信箱</label>
-				{{ form.labor_ID }}
+				{{ form.labor_email}}
 
 			</div>
 
@@ -139,6 +139,7 @@
 			<div class="col">
 				<label for="formFile" class="form-label">身分證正面</label>
 				{{ form.ID_front}}
+				<img class="container" id="ID_front_output"/>
 			</div>
 			<div class="col">
 				<label for="formFile" class="form-label">身分證背面</label>
@@ -166,8 +167,8 @@
 		<div class="mb-4">
 			<input type="checkbox" id="form_check" class="">
 			<label>確認以上資料無誤</label>
-		</div>-->
-		
+		</div>
+
 		<input type="submit" class="w-100 btn btn-dark fw-bold py-2 mb-4" value="送出">
 	</div>		
 </form>
@@ -188,7 +189,8 @@
 {% block js%}
 <script type="text/javascript ">
       
-        
+        //--------same_address--------
+
         const ResidentAddress = document.getElementById("ResidentAddress");
         const CurrentAddress = document.getElementById("CurrentAddress");
         var address_check = document.getElementById("address_check"); 
@@ -202,6 +204,8 @@
           }
 
         });
+
+		//---------price_calculate---------
 
         const price =  document.getElementById("price");
         const form = document.querySelector("#form");
@@ -225,12 +229,25 @@
           document.getElementById("netamount").innerHTML = netamount_num ; 
 
         });
-		
+
 		/*form.addEventListener("submit", function (e) { 
             e.preventDefault();
         });*/
 
+		//---------ID frout01-------
+
+		var loadFile = function(event) {
+			var output = document.getElementById('ID_front_output');
+			output.src = URL.createObjectURL(event.target.files[0]);
+			output.onload = function() {
+			URL.revokeObjectURL(output.src) // free memory
+			}
+		};
+
+	
 		//---------簽名---------
+
+		
 
 		var canvas = document.querySelector("canvas");
 

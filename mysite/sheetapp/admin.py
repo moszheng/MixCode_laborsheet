@@ -3,7 +3,7 @@ from django.db import models
 from .models import Post
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'labor_name', 'project_name', 'price')
+    list_display = ('id', 'labor_name', 'project_name', 'price','created_at')
 
     search_fields = ('labor_name',)
 
@@ -13,15 +13,19 @@ class PostAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ['領款人資料',{
-            'fields':('labor_name','labor_ID','labor_Phone','labor_ResidentAddress','labor_CurrentAddress',
-                        ('labor_bank','labor_bankname','labor_bankaccount',)),
+            'fields':('labor_name','labor_ID','labor_email','labor_Phone',('labor_ResidentAddress','labor_CurrentAddress',),
+                        ('labor_bank','labor_bankname','labor_bankaccount','bank_cover',),
+                        ('category_choice','member_choice',)
+                    ),
         }],
         ['專案名稱',{    
             'fields': ('project_name','price',),
         }],
         ['身分證',{    
-            'fields': ('ID_front','ID_back','bank_cover',),
-        }]
+            'fields': ('ID_front','ID_back',),
+        }],
+
+        
     )
    
 # Register your models here.

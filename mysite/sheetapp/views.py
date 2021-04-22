@@ -6,11 +6,13 @@ from .forms import UploadModelForm
 def get_name(request):
 
     template_name = 'index/index.html'
-
+    
     if request.method == 'POST':
         
         form = UploadModelForm(request.POST, request.FILES)
-        
+
+        #print (formset.errors)
+
         if form.is_valid():
 
             post = form.save(commit=False)
