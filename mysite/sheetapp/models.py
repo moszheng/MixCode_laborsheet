@@ -16,8 +16,8 @@ class Post(models.Model):
     labor_email = models.EmailField(max_length=60, verbose_name='電子信箱', blank=False, null=False)
     labor_Phone = models.CharField(max_length=20, verbose_name='連絡電話', blank=False, null=False)
 
-    category_choice = models.CharField(max_length=3, verbose_name='申報類別', choices=categorychoice)
-    member_choice = models.CharField(max_length=3, verbose_name='職業工業會員', choices=memberchoice)
+    category_choice = models.CharField(max_length=3, verbose_name='申報類別', default='9A',choices=categorychoice)
+    member_choice = models.CharField(max_length=3, verbose_name='職業工業會員', default='yes',choices=memberchoice)
     
     labor_ResidentAddress = models.CharField(max_length=60, verbose_name='戶籍地址', blank=False, null=False)
     labor_CurrentAddress = models.CharField(max_length=60, verbose_name='通訊地址', blank=False, null=False)
@@ -32,7 +32,7 @@ class Post(models.Model):
     ID_front = models.ImageField(upload_to='image/', verbose_name='身份證正面', blank=False, null=False)
     ID_back = models.ImageField(upload_to='image/', verbose_name='身份證正面', blank=False, null=False)
     bank_cover = models.ImageField(upload_to='image/', verbose_name='銀行存摺封面', blank=False, null=False)
-    
+    labor_signature = models.FileField(upload_to='image/',verbose_name='簽名')
 
     created_at = models.DateTimeField(auto_now_add=True)
 

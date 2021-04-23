@@ -160,14 +160,16 @@
 			<canvas id="signature-pad" class="signature-pad" width=500 height=200></canvas>
 		</div>
 		<div>
-			<button class="btn btn-dark py-2 mb-4" id="save">Save</button>
-			<button class="btn btn-dark py-2 mb-4" id="clear">Clear</button>
+			<button type="button" class="btn btn-dark py-2 mb-4" id="save">Save</button>
+			<button type="button" class="btn btn-dark py-2 mb-4" id="clear">Clear</button>
 		</div>
+		<img class="container" id="labor_signature_output"/>
 
 		<div class="mb-4">
 			<input type="checkbox" id="form_check" class="">
 			<label>確認以上資料無誤</label>
 		</div>
+
 
 		<input type="submit" class="w-100 btn btn-dark fw-bold py-2 mb-4" value="送出">
 	</div>		
@@ -230,6 +232,7 @@
 
         });
 
+
 		/*form.addEventListener("submit", function (e) { 
             e.preventDefault();
         });*/
@@ -240,7 +243,7 @@
 			var output = document.getElementById('ID_front_output');
 			output.src = URL.createObjectURL(event.target.files[0]);
 			output.onload = function() {
-			URL.revokeObjectURL(output.src) // free memory
+				URL.revokeObjectURL(output.src) // free memory
 			}
 		};
 
@@ -259,6 +262,7 @@
 
 		var saveButton = document.getElementById('save');
 		var cancelButton = document.getElementById('clear');
+		
 
 		saveButton.addEventListener('click', function (event) {
 			
@@ -268,9 +272,19 @@
 
   			var data = signaturePad.toDataURL('image/png');
 
-			// Send data to server instead...
+			//labor_signature.value = data;
+			
+			var signature_output = document.getElementById('labor_signature_output');
+
+			signature_output.src = data;
+			signature_output.onload = function() {
+				URL.revokeObjectURL(signature_output.src) // free memory
+			}
+
+		
 			console.log(data);
-  			window.open(data);
+
+  			//window.open(data);
 		});
 
 		cancelButton.addEventListener('click', function (event) {
