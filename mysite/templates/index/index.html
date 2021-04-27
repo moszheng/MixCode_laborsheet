@@ -54,18 +54,20 @@
 
 				<label>戶籍地址</label>
 				{{ form.labor_ResidentAddress}}
-				<label>通訊地址</label>
-				{{ form.labor_CurrentAddress}}
 
 			</div>
-
-			<div class="mb-4">
-				<input type="checkbox" id="address_check" class="form-check-input">
-				<label class="form-check-label" for="flexCheckDefault">
-					通訊地址同戶籍地址
-				</label>
+			<div>
+				申報類別
+				{{ form.category_choice}}
 			</div>
-			
+
+			<div>
+				職業工業會員
+				{{ form.member_choice}}
+			</div>
+			<div class="my-4">
+				<h4>付款資訊</h4>
+			</div>
 			<label>銀行名(含分行)</label>
 			{{ form.labor_bank}}<br>
 			<label>銀行戶名</label>
@@ -74,15 +76,7 @@
 			{{ form.labor_bankaccount}}<br>
 		</div>
 		
-		<div>
-			申報類別
-			{{ form.category_choice}}
-		</div>
-
-		<div>
-			職業工業會員
-			{{ form.member_choice}}
-		</div>
+		
 
 		<hr class="my-4">
 
@@ -149,26 +143,29 @@
 				<label for="formFile" class="form-label">銀行存摺封面</label>
 				{{ form.bank_cover}}
 			</div>
-
-		</div>
-		
-		<div class="my-4">
-			<h4>簽名處</h4>
+			<!--{{ form.labor_signature}}-->
 		</div>
 
-		<div class="wrapper my-4">
-			<canvas id="signature-pad" class="signature-pad" width=500 height=200></canvas>
+		<div class="">
+			<div class="my-4">
+				<h4>簽名處</h4>
+			</div>
+
+			<div class="wrapper my-4">
+				<canvas id="signature-pad" class="signature-pad" width=500 height=200></canvas>
+			</div>
+			<div>
+				<button type="button" class="btn btn-dark py-2 mb-4" id="save">Save</button>
+				<button type="button" class="btn btn-dark py-2 mb-4" id="clear">Clear</button>
+			</div>
+			<img class="container" id="labor_signature_output"/>
 		</div>
-		<div>
-			<button type="button" class="btn btn-dark py-2 mb-4" id="save">Save</button>
-			<button type="button" class="btn btn-dark py-2 mb-4" id="clear">Clear</button>
-		</div>
-		<img class="container" id="labor_signature_output"/>
 
 		<div class="mb-4">
-			<input type="checkbox" id="form_check" class="">
+			<input type="checkbox" class="" required>
 			<label>確認以上資料無誤</label>
 		</div>
+		
 
 
 		<input type="submit" class="w-100 btn btn-dark fw-bold py-2 mb-4" value="送出">
@@ -180,118 +177,18 @@
 
 {% block footer %}
 
-        <footer class="container py-5">
+	<footer class="container py-5">
 
-            <p class="mb-1 text-center">2015 © Mixcode Studio.</p>
+		<p class="mb-1 text-center">2015 © Mixcode Studio.</p>
             
-        </footer>
+	</footer>
 
 {% endblock  %}
 
+
+
 {% block js%}
-<script type="text/javascript ">
-      
-        //--------same_address--------
 
-        const ResidentAddress = document.getElementById("ResidentAddress");
-        const CurrentAddress = document.getElementById("CurrentAddress");
-        var address_check = document.getElementById("address_check"); 
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 
-        
-
-        address_check.addEventListener("change", function () {
-
-          if(this.checked){
-            CurrentAddress.setAttribute("value",ResidentAddress.value);
-          }
-
-        });
-
-		//---------price_calculate---------
-
-        const price =  document.getElementById("price");
-        const form = document.querySelector("#form");
-
-        price.addEventListener("input", function (e) {
-
-          
-          if ( price.value > 20000){
-            incometex_num  = Math.round(price.value *0.1);
-            premium_num = Math.round(price.value *0.0191);
-          }
-          else{
-            incometex_num  = 0;
-            premium_num = 0;
-          }
-
-          const netamount_num = price.value - incometex_num - premium_num;
-
-          document.getElementById("incometax").innerHTML = incometex_num; 
-          document.getElementById("premium").innerHTML = premium_num; 
-          document.getElementById("netamount").innerHTML = netamount_num ; 
-
-        });
-
-
-		/*form.addEventListener("submit", function (e) { 
-            e.preventDefault();
-        });*/
-
-		//---------ID frout01-------
-
-		var loadFile = function(event) {
-			var output = document.getElementById('ID_front_output');
-			output.src = URL.createObjectURL(event.target.files[0]);
-			output.onload = function() {
-				URL.revokeObjectURL(output.src) // free memory
-			}
-		};
-
-	
-		//---------簽名---------
-
-		
-
-		var canvas = document.querySelector("canvas");
-
-        var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
-  			backgroundColor: 'rgba(255, 255, 255)',
-  			penColor: 'rgb(0, 0, 0)',
-			minDistance: 1
-		});
-
-		var saveButton = document.getElementById('save');
-		var cancelButton = document.getElementById('clear');
-		
-
-		saveButton.addEventListener('click', function (event) {
-			
-			if (signaturePad.isEmpty()) {
-    			return alert("Please provide a signature first.");
-  			}
-
-  			var data = signaturePad.toDataURL('image/png');
-
-			//labor_signature.value = data;
-			
-			var signature_output = document.getElementById('labor_signature_output');
-
-			signature_output.src = data;
-			signature_output.onload = function() {
-				URL.revokeObjectURL(signature_output.src) // free memory
-			}
-
-		
-			console.log(data);
-
-  			//window.open(data);
-		});
-
-		cancelButton.addEventListener('click', function (event) {
-  			signaturePad.clear();
-		});
-
-		
-
-    </script>
 {% endblock  %}

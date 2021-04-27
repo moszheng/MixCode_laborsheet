@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from .forms import UploadModelForm
+from .models import Post
 
 def get_name(request):
 
@@ -14,6 +15,7 @@ def get_name(request):
 
         if form.is_valid():
 
+            #data_url_pattern = re.compile('data:image/(png|jpeg);base64,(.*)$')
             post = form.save(commit=False)
             post.author = request.user
             post.save()            
