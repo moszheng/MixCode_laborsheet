@@ -16,113 +16,143 @@
 			</div>
 			<div class="col-sm-9 py-1">
 				<h2 class="header" > 混合編碼勞報單 </h1>
-				
 			</div>
 		</div>
 	</div>
 
 	<div class="form-group">
 		
-		<div class="">
-			
-			<h4 class="mt-4 mb-3">領款人基本資料</h4>
-			
-			<div class="form-group">
+		<div class="mb-4">
 
-				<label>姓名</label>
-				{{ form.labor_name}}
-				
+			<div class="mb-3">
+				<label class="input_label">專案名稱</label>
+				{{ form.project_name}}
 			</div>
-			<div class="form-group">
 
-				<label>身份證字號</label>
+			<!---------------------------------------------->
+
+			<h4 class="my-4">領款人基本資料</h4>
+			
+			<div class="form-group mb-3">
+
+				{{ form.labor_name}}
+
+			</div>
+
+			<div class="form-group mb-3">
+
 				{{ form.labor_ID }}
 
 			</div>
 
-			<div class="form-group">
-
-				<label>電子信箱</label>
+			<div class="form-group mb-3">
+				
 				{{ form.labor_email}}
 
 			</div>
+			<div class="form-group mb-3">
+				
+				{{ form.labor_Phone}}
+				
+			</div>
 
-			<label>連絡電話</label>
-			{{ form.labor_Phone}}<br>
+			<div class="form-group mb-3">
 
-			<div class="form-group">
-
-				<label>戶籍地址</label>
 				{{ form.labor_ResidentAddress}}
 
 			</div>
-			<div>
-				申報類別
-				{{ form.category_choice}}
-			</div>
 
-			<div>
-				職業工業會員
-				{{ form.member_choice}}
+			<div class="row">
+				<div class="col">
+					申報類別
+					{{ form.category_choice}}
+				</div>
+
+				<div class="col">
+					職業工業會員
+					{{ form.member_choice}}
+				</div>
 			</div>
-			<div class="my-4">
+		</div>
+		<!---------------------------------------------->
+		<div class="mb-4">
+
+			<div class="mb-4">
 				<h4>付款資訊</h4>
 			</div>
-			<label>銀行名(含分行)</label>
-			{{ form.labor_bank}}<br>
-			<label>銀行戶名</label>
-			{{ form.labor_bankname}}<br>
-			<label>銀行帳號</label>
-			{{ form.labor_bankaccount}}<br>
-		</div>
-		
-		
 
-		<hr class="my-4">
+			<div class="form-group mb-3">
 
-		<div class="mb-3">
-			<label>專案名稱</label>
-			{{ form.project_name}}
-		</div>
+				{{ form.labor_bank}}
+				
+			</div>
 
-		<hr class="my-4">
+			<div class="row mb-3 align-items-center">
 
-		<div class="my-3">
-
-			<h4 class="mb-3">領款金額</h4>
-
-			<label>給付總額</label>
-			{{ form.price }}<br>
-
-			<div class="row align-items-center">
-				<div class="col">
-					<li>代扣所得稅(10%)</li>
+				<div class="col-8 ">
+					{{ form.labor_bankname}}
 				</div>
-				<div class="col">
-					<p id='incometax'>0</p>
+				<div class="col-4">
+					<input type="checkbox" id="name_check" class="form-check-input">
+					<label class="form-check-label" for="flexCheckDefault">
+						同領款人姓名
+					</label>
 				</div>
 			</div>
-			<div class="row align-items-center">
-				<div class="col">
-					
-					<li>代扣補充保費(1.91%)</li>
-					
-				</div>
-				<div class="col">
-					
-					<p id='premium'>0</p>
-					
-				</div>
+
+			<div class="form-group mb-3">
+				{{ form.labor_bankaccount}}
 			</div>
-			<div class="row align-items-center">
-				<div class="col">
-					
-					<li>給付淨額</li>
+
+			<div class="mb-3">
+				<label for="formFile" class="form-label">銀行存摺封面</label>
+				{{ form.bank_cover}}
+				<img class="container" id="ID_bank_output"/>
+			</div>
+		</div>
+
+		<!---------------------------------------------->
+
+		<div class="row my-3">
+
+			<h4 class="mb-4">領款金額</h4>
+			
+			<div class="col">	
+				
+				{{ form.price }}
+			</div>
+
+			<div class="col">
+
+				<div class="row align-items-center mb-3">
+					<div class="col-8">
+						<li>所得金額</li>
+					</div>
+					<div class="col-4 d-flex justify-content-end">
+						<span id='netamount'>0</span>
+					</div>
 				</div>
-				<div class="col">
-					
-					<p id='netamount'>0</p>
+				<div class="row align-items-center  mb-3">
+					<div class="col-8 ">
+						<li>代扣所得稅</li>
+					</div>
+					<div class="col-4 d-flex justify-content-end" >
+						<span id='incometax'>0</span>
+					</div>
 				</div>
+				<div class="row align-items-center  mb-3">
+					<div class="col-8">
+						
+						<li>代扣補充保費</li>
+						
+					</div>
+					<div class="col-4 d-flex justify-content-end">
+						
+						<span id='premium'>0</span>
+						
+					</div>
+				</div>
+				
 			</div>
 		</div>
 
@@ -130,19 +160,17 @@
 		
 		<div class="row mb-4">
 
-			<div class="col">
+			<div class="col" id="fileupload">
 				<label for="formFile" class="form-label">身分證正面</label>
 				{{ form.ID_front}}
 				<img class="container" id="ID_front_output"/>
 			</div>
-			<div class="col">
+			<div class="col" id="fileupload">
 				<label for="formFile" class="form-label">身分證背面</label>
 				{{ form.ID_back}}
+				<img class="container" id="ID_back_output"/>
 			</div>
-			<div class="col">
-				<label for="formFile" class="form-label">銀行存摺封面</label>
-				{{ form.bank_cover}}
-			</div>
+			
 			<!--{{ form.labor_signature}}-->
 		</div>
 
@@ -151,8 +179,8 @@
 				<h4>簽名處</h4>
 			</div>
 
-			<div class="wrapper my-4">
-				<canvas id="signature-pad" class="signature-pad" width=500 height=200></canvas>
+			<div class="wrapper d-flex justify-content-center">
+				<canvas id="signature-pad" class="signature-pad" width=400 height=200></canvas>
 			</div>
 			<div>
 				<button type="button" class="btn btn-dark py-2 mb-4" id="save">Save</button>
@@ -162,11 +190,25 @@
 		</div>
 
 		<div class="mb-4">
-			<input type="checkbox" class="" required>
-			<label>確認以上資料無誤</label>
+			<input type="checkbox" class="form-check-input" id="invalidCheck" required>
+			<label class="form-check-label" for="invalidCheck">
+				確認以上資料無誤
+			</label>
 		</div>
-		
-
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
 
 		<input type="submit" class="w-100 btn btn-dark fw-bold py-2 mb-4" value="送出">
 	</div>		

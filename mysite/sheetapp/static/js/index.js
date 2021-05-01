@@ -1,65 +1,84 @@
-/*/--------same_address--------
+//--------same_name--------
 
-const ResidentAddress = document.getElementById("ResidentAddress");
-const CurrentAddress = document.getElementById("CurrentAddress");
-var address_check = document.getElementById("address_check");
+const laborname = document.getElementById("id_labor_name");
+const laborbankname = document.getElementById("id_labor_bankname");
+var samename = document.getElementById("name_check");
 
-address_check.addEventListener("change", function () {
+samename.addEventListener("change", function () {
 
     if (this.checked) {
-        CurrentAddress.setAttribute("value", ResidentAddress.value);
-    }
 
-});*/
+        laborbankname.setAttribute("value", laborname.value);
+
+        laborname.addEventListener("input", function (e) { //follow change
+            laborbankname.setAttribute("value", laborname.value);
+        });
+    }
+});
 
 //---------price_calculate---------
 
-const price = document.getElementById("price");
+const price = document.getElementById("id_price");
 const form = document.querySelector("#form");
 
 price.addEventListener("input", function (e) {
 
 
-    if (price.value > 20000) {
-        incometex_num = Math.round(price.value * 0.1);
-        premium_num = Math.round(price.value * 0.0191);
+    if (price.value > 17618) {
+
+        netamount_num = Math.round(price.value / 0.8809);
+        incometex_num = Math.round(netamount_num  * 0.1);
+        premium_num = Math.round(netamount_num * 0.0191);
     }
     else {
+        netamount_num = price.value;
         incometex_num = 0;
         premium_num = 0;
     }
 
-    const netamount_num = price.value - incometex_num - premium_num;
+    //const netamount_num = price.value + incometex_num + premium_num;
 
+    document.getElementById("netamount").innerHTML = netamount_num;
     document.getElementById("incometax").innerHTML = incometex_num;
     document.getElementById("premium").innerHTML = premium_num;
-    document.getElementById("netamount").innerHTML = netamount_num;
+    
 
 });
-
-
 
 /*form.addEventListener("submit", function (e) { 
     e.preventDefault();
 });*/
 
 //---------Flie Preview-------
-
-var loadFile = function (event) {
-    var output = document.getElementById('ID_front_output');
+var loadFile_bank = function (event) {
+    var output = document.getElementById('ID_bank_output');
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function () {
         URL.revokeObjectURL(output.src) // free memory
     }
 };
 
+var loadFile_front = function (event) {
+    var output = document.getElementById('ID_front_output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function () {
+        URL.revokeObjectURL(output.src) // free memory
+    }
+};
+var loadFile_back = function (event) {
+    var output = document.getElementById('ID_back_output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function () {
+        URL.revokeObjectURL(output.src) // free memory
+    }
+};
 //---------簽名------------------
 
 var canvas = document.querySelector("canvas");
 
 var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
-    backgroundColor: 'rgba(255, 255, 255)',
-    penColor: 'rgb(0, 0, 0)',
+    backgroundColor: '#FFF',
+    penColor: '#000',
     minDistance: 1
 });
 
