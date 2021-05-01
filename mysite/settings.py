@@ -27,9 +27,7 @@ SECRET_KEY = 'django-insecure-n#pjt_mkclka+c9nte5(@m^p2=c7&pb92tc3*_58gx&ya)6jjh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    
-]
+ALLOWED_HOSTS = ['mixcode-laborsheet.herokuapp.com','127.0.0.1']
 
 
 
@@ -85,8 +83,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'daife5bcnnrqhs',
+        'HOST' :'ec2-54-224-120-186.compute-1.amazonaws.com',
+        'PORT' : 5432,
+        'USER' : 'ffhalaqosozjty',
+        'PASSWORD' : 'e733210cfacfcbfbb488d35b3964c2287c6a4bcb56643b6e5f0da35397cf8ae9'
     }
 }
 
