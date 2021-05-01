@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-n#pjt_mkclka+c9nte5(@m^p2=c7&pb92tc3*_58gx&ya)6jjh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mixcode-laborsheet.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 
@@ -44,8 +44,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
