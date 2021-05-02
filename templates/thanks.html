@@ -2,25 +2,24 @@
 
 {% block upload %}
 
-<div class="py-5 text-center ">
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center">
 
     {% load static %}
 
 	<div class="mb-5">
-		<img src="{% static 'logo/mixcode_logo.png' %}" width="150" height="150">
+		<img src="{% static 'logo/mixcode_logo.png' %}" alt="logo" width="150" height="150">
 	</div>
     <div class="mb-5">
         
-        <b> {{labor_name}} 感謝您的幫助</b>
+        <b> MixCode感謝您的協助</b>
         
     </div>
+    <div>
+        <p class="mb-1">Taipei / Taiwan</p>
+        <p class="mb-1">mixcode.tv</p>
+        <p>T 02-27671502  | E info@mixcode.tv</p>
+    </div>
+
 </div>
 
-{% endblock  %}
-{% block footer %}
-        <footer class="text-small mt-auto">
-            <p class="mb-1">Taipei / Taiwan</p>
-            <p class="mb-1">mixcode.tv</p>
-            <p>T 02-27671502  | E info@mixcode.tv</p>
-        </footer>
 {% endblock  %}

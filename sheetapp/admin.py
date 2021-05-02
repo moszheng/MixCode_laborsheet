@@ -7,16 +7,18 @@ class PostAdmin(admin.ModelAdmin):
 
     search_fields = ('labor_name',)
 
-    list_filter = ('labor_name', 'project_name','labor_Phone')
+    list_filter = ('labor_name', 'project_name','pay_complete')
 
     list_per_page = 20
 
     fieldsets = (
         ['領款人資料',{
-            'fields':('labor_name','labor_ID','labor_email','labor_Phone',('labor_ResidentAddress',),
-                        ('labor_bank','labor_bankname','labor_bankaccount','bank_cover',),
+            'fields':('labor_name','labor_ID','labor_email','labor_Phone','labor_ResidentAddress',
                         ('category_choice','member_choice',)
                     ),
+        }],
+        ['付款資訊',{    
+            'fields': (('labor_bank','labor_bankname','labor_bankaccount',),'bank_cover',),
         }],
         ['專案名稱',{    
             'fields': ('project_name','price',),
